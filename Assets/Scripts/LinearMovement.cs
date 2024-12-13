@@ -34,8 +34,8 @@ public class LinearMovement : MonoBehaviour
             return;
         }
         Vector3 direction = (target.position - transform.position).normalized;
-        rb.velocity = direction * speed * Time.deltaTime;
-        //transform.Translate(direction * speed * Time.deltaTime);
+        //rb.velocity = direction * speed * Time.deltaTime;
+        transform.Translate(direction * speed * Time.deltaTime);
     } 
 
     private void Move()
@@ -43,7 +43,7 @@ public class LinearMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.z = Input.GetAxisRaw("Vertical");
 
-        //transform.Translate(movement * speed * Time.deltaTime);
-        rb.velocity = speed * Time.deltaTime * movement;
+        transform.Translate(movement * speed * Time.deltaTime);
+        //rb.velocity = speed * Time.deltaTime * movement;
     }
 }
