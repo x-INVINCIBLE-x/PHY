@@ -8,6 +8,8 @@ public class BallasticPendulum : MonoBehaviour
     public bool startSwing;
     public BallasticPendulum otherPendulum;
 
+    public Transform joint;
+
     private void Start()
     {
         transform.rotation = Quaternion.Euler(0f, 0f, startAngle);
@@ -31,6 +33,15 @@ public class BallasticPendulum : MonoBehaviour
             //    startSwing = false;
             //}
            (startAngle, targetAngle) = (targetAngle, startAngle); 
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.TryGetComponent(out Attach attach))
+        {
+            collision.transform.parent = joint;
+            joint.localPosition = Vector3.zero;
         }
     }
 }

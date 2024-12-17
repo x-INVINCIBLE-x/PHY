@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class Attach : MonoBehaviour
 {
-    private void AttachIt(Transform _transform)
+    private bool attatched = false;
+    private Transform target = null;
+    public void AttachIt(Transform _transform)
     {
-        transform.parent = _transform;
+        attatched = true;
+        target = _transform;
+    }
+
+    private void Update()
+    {
+        if (target)
+        {
+            transform.localPosition = target.localPosition;
+        }
     }
 }
